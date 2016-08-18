@@ -1,0 +1,17 @@
+---
+- name: Add Docker repository.
+  yum_repository:
+    name: docker
+    description: Docker Repository
+    enabled: 1
+    gpgcheck: 1
+    baseurl: "{{ docker_repository_baseurl }}"
+    gpgkey: "{{ docker_repository_gpgkey }}"
+    
+- name: Install the Docker package.
+  yum: name=docker-engine state=present
+  
+- name: Start docker service
+  service: name=docker state=started  
+ 
+   

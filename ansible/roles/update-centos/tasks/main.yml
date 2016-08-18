@@ -1,0 +1,6 @@
+---
+- name: install repo
+  get_url: url=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm dest=/tmp/ mode="a+rx"
+  
+- name: upgrade all packages
+  yum: name=/tmp/epel-release-latest-7.noarch.rpm state=present

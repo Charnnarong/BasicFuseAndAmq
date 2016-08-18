@@ -1,0 +1,11 @@
+---
+# This is the main playbook what ansible will use for provisoning. 
+- hosts: localhost
+  remote_user: vagrant
+  serial: 1
+  roles:
+    - health-check
+    - dockerengine
+    - fuse-server
+    
+    
