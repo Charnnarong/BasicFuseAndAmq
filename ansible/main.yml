@@ -5,7 +5,7 @@
   serial: 1
   roles:
     - health-check
+    - sshd-password-authentication
     - dockerengine
-    - fuse-server
     
     

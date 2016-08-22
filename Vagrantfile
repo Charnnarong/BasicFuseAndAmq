@@ -7,11 +7,11 @@
 # you're doing.
 Vagrant.configure("2") do |config|
 
-  
+  config.vbguest.auto_update = false
   config.vm.define "fuseAmq" do |d|
     d.vm.box = "centos/7"
     d.vm.hostname = "fuseAmq"
-    d.vm.network "private_network", ip: "172.16.198.10"
+    d.vm.network "private_network" , type: "dhcp"
     d.vm.synced_folder ".", "/vagrant"
     d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
     d.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook /vagrant/ansible/main.yml -c local"

@@ -1,0 +1,12 @@
+---
+- name: Ensure sshd is config to be able to use password authentication.
+  lineinfile: dest=/etc/ssh/sshd_config regexp='PasswordAuthentication no' line='#PasswordAuthentication no'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Set PasswordAuthentication yes
+  lineinfile: dest=/etc/ssh/sshd_config state=present regexp='#PasswordAuthentication yes' line='PasswordAuthentication yes'
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Restart sshd
+  service: name=sshd state=restarted
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'

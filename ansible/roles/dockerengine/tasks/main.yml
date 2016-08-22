@@ -10,8 +10,16 @@
     
 - name: Install the Docker package.
   yum: name=docker-engine state=present
-  
+
+- name: Ensure docker group present
+  group: name=docker state=present
+
+- name: Add docker group
+  user: name=vagrant group=docker
+
+- name: Ensure docker engine start automaticlly after vm reboot
+  command: chkconfig docker on
+
 - name: Start docker service
   service: name=docker state=started  
- 
-   
+
