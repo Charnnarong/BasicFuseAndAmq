@@ -1,0 +1,13 @@
+---
+- name: Install vim.
+  yum: name=vim state=present
+
+- name: Install locate.
+  yum: name=mlocate state=present
+  register: result
+
+- name: Update db
+  command: updatedb
+  when: result|succeeded
+
+

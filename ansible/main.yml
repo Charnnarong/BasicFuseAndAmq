@@ -5,6 +5,7 @@
   serial: 1
   roles:
     - health-check
+    - utils
     - sshd-password-authentication
     - dockerengine
     
