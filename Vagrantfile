@@ -8,6 +8,18 @@
 Vagrant.configure("2") do |config|
 
   config.vbguest.auto_update = true
+
+  config.vm.define "prod" do |d|
+    d.vm.box = "centos/7"
+    d.vm.hostname = "prod"
+    d.vm.network "private_network" , type: "dhcp"
+    d.vm.provision :shell, path: "scripts/passwordAuthentication.sh"
+    d.vm.provider "virtualbox" do |v|
+      v.memory = 1024
+    end
+  end
+
+
   config.vm.define "fuseAmq" do |d|
     d.vm.box = "centos/7"
     d.vm.hostname = "fuseAmq"
@@ -19,5 +31,7 @@ Vagrant.configure("2") do |config|
       v.memory = 2048
     end
   end
+
+
 
 end
