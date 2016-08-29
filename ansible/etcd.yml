@@ -1,13 +1,10 @@
 ---
 # This is the main playbook what ansible will use for provisoning. 
-- hosts: localhost
+- hosts: etcd-cluster
   become: yes
   become_method: sudo
   serial: 1
   roles:
-    - health-check
-    - utils
-    - sshd-password-authentication
-    - dockerengine
+    - etcd
     
     
