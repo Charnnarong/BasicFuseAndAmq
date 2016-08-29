@@ -1,0 +1,32 @@
+---
+
+
+- name: Check if etcd installed
+  stat: path=/usr/local/bin/etcd
+  register: st
+
+
+- name: Check if etcd Download
+  stat: path=/tmp/etcd-v3.0.6-linux-amd64.tar.gz
+  register: etcd_st
+
+- name: Download etcd
+  get_url: url=https://github.com/coreos/etcd/releases/download/v3.0.6/etcd-v3.0.6-linux-amd64.tar.gz dest=/tmp
+  when: st.stat.exists == False and etcd_st.stat.exists == False
+
+
+- name: Install etcd
+  unarchive: src="/tmp/etcd-v3.0.6-linux-amd64.tar.gz" dest="/tmp/" remote_src=yes copy=no
+  when: etcd_st.stat.exists
+
+- name: Move etcd to bin
+  command: mv /tmp/etcd-v3.0.6-linux-amd64/etcd /usr/local/bin
+  when: st.stat.exists == False
+
+- name: Move etcd to bin
+  command: mv /tmp/etcd-v3.0.6-linux-amd64/etcdctl /usr/local/bin
+  when: st.stat.exists == False
+
+- name: Clean up etcd.
+  file: path=/tmp/etcd-v2.1.2-linux-amd64 state=absent
+
