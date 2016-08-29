@@ -1,6 +1,5 @@
 ---
 
-
 - name: Check if etcd installed
   stat: path=/usr/local/bin/etcd
   register: st
@@ -30,3 +29,11 @@
 - name: Clean up etcd.
   file: path=/tmp/etcd-v2.1.2-linux-amd64 state=absent
 
+- name: Configuring etcd cluster.
+  command: "nohup etcd --name {{ ansible_hostname }} --initial-advertise-peer-urls http://{{ ip }}:2380 \
+    --listen-peer-urls http://{{ ip }}:2380 \
+    --listen-client-urls http://{{ ip }}:2379,http://127.0.0.1:2379 \
+    --advertise-client-urls http://{{ ip }}:2379 \
+    --initial-cluster-token {{ cluster_token }} \
+    --initial-cluster {{ cluster_node_1 }},{{ cluster_node_2 }},{{ cluster_node_3 }} \
+    --initial-cluster-state new"
