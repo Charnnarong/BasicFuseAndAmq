@@ -1,9 +1,8 @@
 ---
 # This is the main playbook what ansible will use for provisoning. 
 - hosts: etcd-cluster
-  become: yes
-  become_method: sudo
-  serial: 1
+  remote_user: vagrant
+  serial: 3
   roles:
     - etcd
     
