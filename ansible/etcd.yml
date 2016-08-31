@@ -2,7 +2,7 @@
 # This is the main playbook what ansible will use for provisoning. 
 - hosts: etcd-cluster
   remote_user: vagrant
-  serial: 3
+  serial: 1
   roles:
     - etcd
     
