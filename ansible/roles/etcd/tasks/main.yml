@@ -29,7 +29,7 @@
   when: st.stat.exists == False
 
 - name: Clean up etcd.
-  command: rm -rf /tmp/etcd-v3.0.6-linux-amd64 state=absent
+  command: rm -rf /tmp/etcd-v3.0.6-linux-amd64
 
 - name: Configuring etcd cluster.
   shell: "nohup /usr/local/bin/etcd --name {{ ansible_hostname }} --initial-advertise-peer-urls http://{{ ip }}:2380 \
