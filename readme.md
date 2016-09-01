@@ -1,6 +1,10 @@
 ####Description
     // TODO : Automate microservice environment.
 
+####Tested project environment.
++   Vagrant 1.8.5 with the fixed as demonstrate on 
++   Virtualbox 5.0.16 r105871 ( The newer version may not work for installing GuestAdditions on Centos/7 )
+
 ####Plausible problemes occured while running the project
 
 * **Setup etcd cluster**
