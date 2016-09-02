@@ -1,0 +1,8 @@
+directories:
+  - /etc/confd/conf.d
+  - /etc/confd/templates
+
+files: [
+  { src: 'sample.toml', dest: '/etc/confd/conf.d/sample.toml', mode: '0644' },
+  { src: 'sample.conf.tmpl', dest: '/etc/confd/templates/sample.conf.tmpl', mode: '0644' }
+]
