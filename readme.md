@@ -12,7 +12,7 @@
 [Project requirement](./documents/ProjectRequirements.md)
 [Known Errors.](./documents/KnowError.md)
 
-1. [etcd clustering demo](./documents/etcd.md)
+1. [Service Discovery demo](./documents/etcd.md)
     
     
     
