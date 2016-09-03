@@ -7,7 +7,10 @@
     gpgcheck: 1
     baseurl: "{{ docker_repository_baseurl }}"
     gpgkey: "{{ docker_repository_gpgkey }}"
-    
+
+- name: Install python-pip
+  yum: name=python-pip state=present
+
 - name: Install the Docker package.
   yum: name=docker-engine state=present
 
@@ -19,6 +22,9 @@
 
 - name: Ensure docker engine start automaticlly after vm reboot
   command: chkconfig docker on
+
+- name: Install docker-py
+  pip: name=docker-py
 
 - name: Start docker service
   service: name=docker state=started  
