@@ -13,7 +13,8 @@
 
 [Known Errors.](./documents/KnowError.md)
 
-1. [Service Discovery demo](./documents/etcd.md)
+1. [Service Discovery (with etcd)](./documents/etcd.md)
+2. [Service Discovery (with Consul)](./documents/consul.md)
     
     
     

@@ -1,4 +1,4 @@
-####Sample Service Discovery ( etcd )
+####Sample Service Discovery ( Consul )
 
    At the end of the play, we will have infrastructure as shown
    <br/>
