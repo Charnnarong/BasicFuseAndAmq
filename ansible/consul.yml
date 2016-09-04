@@ -4,6 +4,7 @@
   remote_user: vagrant
   serial: 1
   roles:
+    - update-centos
     - consul
     - dockerengine
     - registrator-consul

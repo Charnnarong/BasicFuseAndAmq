@@ -1,4 +1,4 @@
-{{range service "nginx-80"}}
+{{range service "nginx"}}
 The address is {{.Address}}:{{.Port}}
 {{end}}
 
