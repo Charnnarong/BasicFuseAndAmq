@@ -1,0 +1,3 @@
+registrator_name: registrator-consul-kv
+registrator_protocol: consul
+registrator_port: 8500

@@ -1,0 +1,65 @@
+---
+
+- name: Check if consul installed
+  stat: path=/usr/local/bin/consul
+  register: st
+
+- name: Check if consul Download
+  stat: path=/tmp/consul_0.6.4_linux_amd64.zip
+  register: consul_st
+
+- name: Download consul
+  get_url: url=https://releases.hashicorp.com/consul/0.6.4/consul_0.6.4_linux_amd64.zip dest=/tmp
+  when: st.stat.exists == False and consul_st.stat.exists == False
+
+
+- name: Check if consul Download
+  stat: path=/tmp/consul_0.6.4_linux_amd64.zip
+  register: consul_st
+
+- name: Install unzip
+  yum: name=unzip state=present
+
+- name: Install consul
+  unarchive: src="/tmp/consul_0.6.4_linux_amd64.zip" dest="/tmp/" remote_src=yes copy=no
+  when: consul_st.stat.exists
+
+- name: Move consul to bin
+  command: mv /tmp/consul /usr/local/bin
+  when: st.stat.exists == False
+
+- name: Clean up consul.
+  command: rm -rf /tmp/consul-v3.0.6-linux-amd64
+
+- name: Create Consul template directory
+  file: path="{{ item }}" state=directory
+  with_items: directories
+
+- name: Check if consul installed
+  stat: path=/tmp/consul_0.6.4_web_ui.zip
+  register: st
+
+- name: Download consul web ui
+  get_url: url=https://releases.hashicorp.com/consul/0.6.4/consul_0.6.4_web_ui.zip dest=/tmp
+  when: st.stat.exists == False
+
+- name: Check if consul Download
+  stat: path=/home/vagrant/consul/ui/index.html
+  register: consul_st
+
+- name: Install consul ui
+  unarchive: src="/tmp/consul_0.6.4_web_ui.zip" dest="/home/vagrant/consul/ui" remote_src=yes copy=no
+  when: consul_st.stat.exists == False
+
+- name: Running consul cluster
+  shell: "nohup /usr/local/bin/consul agent {{ consul_extra }} \
+      -data-dir /home/vagrant/consul/data \
+      -config-dir /home/vagrant/consul/config \
+      -node={{ ansible_hostname }} \
+      -bind={{ ip }} \
+      -client=0.0.0.0 \
+      >{{ logs_dir }}/consul.log 2>&1 &"
+
+- name: Has joined
+  shell: /usr/local/bin/consul join {{ consul_server_ip }}
+  when: consul_server_ip is defined

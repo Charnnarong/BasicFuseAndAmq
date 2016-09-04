@@ -1,9 +1,12 @@
 [etcd-cluster]
-prod-1 ansible_host=10.100.193.10
-prod-2 ansible_host=10.100.193.20
-prod-3 ansible_host=10.100.193.30
+prod-1 ansible_host=10.100.193.10 consul_extra="-server -bootstrap-expect 1 -ui-dir /home/vagrant/consul/ui "
+prod-2 ansible_host=10.100.193.20 consul_server_ip="10.100.193.10"
+prod-3 ansible_host=10.100.193.30 consul_server_ip="10.100.193.10"
+
 
 [etcd-cluster:vars]
 ansible_user=vagrant
 ansible_ssh_pass=vagrant
+
+
 

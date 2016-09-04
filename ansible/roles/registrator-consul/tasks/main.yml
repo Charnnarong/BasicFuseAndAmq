@@ -1,0 +1,20 @@
+- name: Container is running
+  docker_container:
+    name: "{{ registrator_name }}"
+    image: gliderlabs/registrator
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+    hostname: "{{ ansible_hostname }}"
+    command: -ip {{ ip }} {{ registrator_protocol }}://{{ ip }}:{{ registrator_port }}
+    state: started
+    detach: True
+
+
+
+# docker run -d \
+#    --name=registrator-consul-kv \
+#    --net=host \
+#    --volume=/var/run/docker.sock:/tmp/docker.sock \
+#    gliderlabs/registrator:latest \
+#      consul://localhost:8500
+#

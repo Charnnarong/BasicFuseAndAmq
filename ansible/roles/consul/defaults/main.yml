@@ -1,0 +1,21 @@
+logs_dir: /home/vagrant/consul/logs
+directories:
+  - /home/vagrant/consul/data
+  - /home/vagrant/consul/config
+  - /home/vagrant/consul/ui
+  - "{{ logs_dir }}"
+
+
+#cluster_token: etcd-cluster-1
+#
+#cluster_node_1_name: prod-1
+#cluster_node_2_name: prod-2
+#cluster_node_3_name: prod-3
+#
+#cluster_node_1_addr: http://10.100.193.10:2380
+#cluster_node_2_addr: http://10.100.193.20:2380
+#cluster_node_3_addr: http://10.100.193.30:2380
+#
+#cluster_node_1: "{{ cluster_node_1_name }}={{ cluster_node_1_addr }}"
+#cluster_node_2: "{{ cluster_node_2_name }}={{ cluster_node_2_addr }}"
+#cluster_node_3: "{{ cluster_node_3_name }}={{ cluster_node_3_addr }}"
