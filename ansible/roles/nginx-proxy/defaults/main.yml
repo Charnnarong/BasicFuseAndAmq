@@ -1,0 +1,8 @@
+logs_dir: /home/vagrant/consul/logs
+
+directories:
+  - /home/vagrant/reverse-proxy/data/nginx/conf.d
+  - /home/vagrant/reverse-proxy/data/nginx/includes
+  - /home/vagrant/reverse-proxy/data/nginx/logs
+  - /home/vagrant/reverse-proxy/data/nginx/upstreams
+  - /home/vagrant/reverse-proxy/data/nginx/templates

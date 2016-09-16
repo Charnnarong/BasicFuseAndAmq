@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     d.vm.network "private_network" , ip: "10.100.192.10"
     d.vm.synced_folder ".", "/vagrant"
     d.vm.provision :shell, path: "scripts/bootstrap_ansible.sh"
-    d.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook /vagrant/ansible/main.yml -c local"
+    # d.vm.provision :shell, inline: "PYTHONUNBUFFERED=1 ansible-playbook /vagrant/ansible/main.yml -c local"
     d.vm.provider "virtualbox" do |v|
       v.memory = 2048
     end

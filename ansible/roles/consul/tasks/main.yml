@@ -21,7 +21,7 @@
   yum: name=unzip state=present
 
 - name: Install consul
-  unarchive: src="/tmp/consul_0.6.4_linux_amd64.zip" dest="/tmp/" remote_src=yes copy=no
+  unarchive: src="/tmp/consul_0.6.4_linux_amd64.zip" dest="/tmp/" remote_src=yes
   when: consul_st.stat.exists
 
 - name: Move consul to bin
@@ -48,7 +48,7 @@
   register: consul_st
 
 - name: Install consul ui
-  unarchive: src="/tmp/consul_0.6.4_web_ui.zip" dest="/home/vagrant/consul/ui" remote_src=yes copy=no
+  unarchive: src="/tmp/consul_0.6.4_web_ui.zip" dest="/home/vagrant/consul/ui" remote_src=yes
   when: consul_st.stat.exists == False
 
 - name: Running consul cluster

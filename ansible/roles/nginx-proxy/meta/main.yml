@@ -1,0 +1,7 @@
+---
+dependencies:
+  - { role: update-centos }
+  - { role: consul }
+  - { role: dockerengine }
+  - { role: registrator-consul }
+  - { role: consul-template }

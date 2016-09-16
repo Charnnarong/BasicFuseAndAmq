@@ -17,7 +17,7 @@
   register: etcd_st
 
 - name: Install etcd
-  unarchive: src="/tmp/etcd-v3.0.6-linux-amd64.tar.gz" dest="/tmp/" remote_src=yes copy=no
+  unarchive: src="/tmp/etcd-v3.0.6-linux-amd64.tar.gz" dest="/tmp/" remote_src=yes
   when: etcd_st.stat.exists
 
 - name: Move etcd to bin
