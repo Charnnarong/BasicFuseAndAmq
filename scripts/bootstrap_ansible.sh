@@ -3,42 +3,28 @@ sudo rpm -iUvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarc
 sudo yum -y update
 ansible --version
 if [ $? == 0 ]; then
-	echo "Successfully install Ansible"
+    echo "Successfully install Ansible"
 else
-	echo "Installing Ansible"
-#	sudo yum -y install ansible
-    sudo yum -y install git
-    sudo git clone git://github.com/ansible/ansible.git --recursive
-    cd ansible
-    sudo yum -y groupinstall 'development tools'
-    sudo yum -y install python-pip
-    sudo yum -y install python-devel
-    sudo yum -y install gcc libffi-devel python-devel openssl-devel
-    sudo yum -y install sshpass asciidoc
-    sudo pip install -U distribute
+    sudo yum -y group install "Development Tools"
+    sudo yum -y install python-devel.x86_64 pyOpenSSL.x86_64 openssl-devel sshpass.x86_64 git python-pip python-cryptography.x86_64
+    sudo pip install --upgrade pip
     sudo pip install paramiko PyYAML Jinja2 httplib2 six
-    sudo yum -y install PyYAML libtomcrypt libtommath libyaml python-babel python-httplib2 python-jinja2 python-keyczar python-markupsafe python-pyasn1 python-six python2-crypto python2-ecdsa python2-paramiko
-    sudo make rpm
-    sudo rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
+    if [ ! -d /vagrant/ansible_community ]; then
+        sudo rm -rf /vagrant/ansible_community
+    fi
+    sudo mkdir /vagrant/ansible_community/
+    git clone git://github.com/ansible/ansible.git --recursive /vagrant/ansible_community/
+    source /vagrant/ansible_community/hacking/env-setup
+    cd /vagrant/ansible_community/
+    sudo python setup.py build
+    sudo python setup.py install
+    if [ ! -d /etc/ansible/ ]; then
+        sudo rm -rf /etc/ansible
+    fi
+    sudo mkdir /etc/ansible/
 
-	cp /vagrant/ansible/ansible.cfg /etc/ansible/ansible.cfg
+    sudo cp /vagrant/ansible/ansible.cfg /etc/ansible/ansible.cfg
+
 fi
 
 
-#Installing:
-# ansible
-#Installing for dependencies:
-# PyYAML
-# libtomcrypt
-# libtommath
-# libyaml
-# python-babel
-# python-httplib2
-# python-jinja2
-# python-keyczar
-# python-markupsafe
-# python-pyasn1
-# python-six
-# python2-crypto
-# python2-ecdsa
-# python2-paramiko

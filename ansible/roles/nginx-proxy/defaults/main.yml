@@ -1,8 +1,11 @@
-logs_dir: /home/vagrant/consul/logs
-
 directories:
-  - /home/vagrant/reverse-proxy/data/nginx/conf.d
-  - /home/vagrant/reverse-proxy/data/nginx/includes
-  - /home/vagrant/reverse-proxy/data/nginx/logs
-  - /home/vagrant/reverse-proxy/data/nginx/upstreams
-  - /home/vagrant/reverse-proxy/data/nginx/templates
+  - /home/vagrant/nginx-proxy/data/nginx/conf.d
+  - /home/vagrant/nginx-proxy/data/nginx/includes
+  - /home/vagrant/nginx-proxy/data/nginx/logs
+  - /home/vagrant/nginx-proxy/data/nginx/upstreams
+  - /home/vagrant/nginx-proxy/data/nginx/templates
+
+files: [
+  { src: 'sample.toml', dest: '/etc/confd/conf.d/sample.toml', mode: '0644' },
+  { src: 'sample.conf.tmpl', dest: '/etc/confd/templates/sample.conf.tmpl', mode: '0644' }
+]
