@@ -27,9 +27,17 @@
     
     **Solution:**
         
-        ```bash
-        ipconfig /release
-        ```
+    ```bash
+    ipconfig /release
+    ```
     
+* **VPN Client problem** 
+    If you are not able to run any playbooks that related to Consul e.g. consul.yml or nginx-reverse-proxy.yml and you see the following 
+    error show in the playbooks result ( -vvvv when run a playbook). 
+    ```bash
+    Error connecting to Consul agent: dial tcp 127.0.0.1:8400: getsockopt: connection refused"
+    ```
+    **Solution:**
+    Just stop vpn client.
     
     

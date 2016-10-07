@@ -33,7 +33,7 @@
 
 - name: Create Consul template directory
   file: path="{{ item }}" state=directory
-  with_items: directories
+  with_items: "{{ directories }}"
 
 - name: Check if consul installed
   stat: path=/tmp/consul_0.6.4_web_ui.zip
@@ -46,6 +46,9 @@
 - name: Check if consul Download
   stat: path=/home/vagrant/consul/ui/index.html
   register: consul_st
+
+- name: Ensure /home/vagrant/consul/ui exist
+  file: path=/home/vagrant/consul/ui state=directory mode=0755
 
 - name: Install consul ui
   unarchive: src="/tmp/consul_0.6.4_web_ui.zip" dest="/home/vagrant/consul/ui" remote_src=yes

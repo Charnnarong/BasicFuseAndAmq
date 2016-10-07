@@ -1,3 +1,0 @@
-files: [
-  { src: 'sample_nginx_tempalte.ctmpl', dest: '/tmp/sample_nginx_tempalte.ctmpl', mode: '0644' },
-]

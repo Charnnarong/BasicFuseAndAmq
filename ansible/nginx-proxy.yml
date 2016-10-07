@@ -1,7 +1,0 @@
----
-# This is the main playbook what ansible will use for provisoning. 
-- hosts: etcd-cluster
-  remote_user: vagrant
-  serial: 1
-  roles:
-    - nginx-proxy

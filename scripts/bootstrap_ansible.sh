@@ -6,7 +6,32 @@ if [ $? == 0 ]; then
     echo "Successfully install Ansible"
 else
     sudo yum -y group install "Development Tools"
-    sudo yum -y install python-devel.x86_64 pyOpenSSL.x86_64 openssl-devel sshpass.x86_64 git python-pip python-cryptography.x86_64
+    sudo yum -y install \
+                    git \
+                    libtomcrypt \
+                    libtommath \
+                    libyaml \
+                    openssl-devel \
+                    pyOpenSSL.x86_64 \
+                    python-babel \
+                    python-backports \
+                    python-backports-ssl_match_hostname \
+                    python-cryptography.x86_64 \
+                    python-devel.x86_64 \
+                    python-httplib2 \
+                    python-jinja2 \
+                    python-keyczar \
+                    python-markupsafe \
+                    python-pip \
+                    python-pyasn1 \
+                    python-setuptools \
+                    python-six \
+                    python2-crypto \
+                    python2-ecdsa \
+                    python2-paramiko \
+                    PyYAML \
+                    sshpass \
+                    sshpass.x86_64
     sudo pip install --upgrade pip
     sudo pip install paramiko PyYAML Jinja2 httplib2 six
     if [ ! -d /vagrant/ansible_community ]; then

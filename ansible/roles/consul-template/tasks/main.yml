@@ -1,9 +1,11 @@
+---
+
 - name: Files are copied
   copy:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "{{ item.mode }}"
-  with_items: files
+  with_items: "{{ files }}"
 
 - name: Check if consul installed
   stat: path=/tmp/consul-template_0.15.0_linux_amd64.zip

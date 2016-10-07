@@ -3,7 +3,7 @@
     path: "{{ item }}"
     state: directory
     owner: vagrant
-  with_items: directories
+  with_items: "{{ directories }}"
 
 
 #- name: Files are copied
