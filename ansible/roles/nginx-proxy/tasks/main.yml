@@ -1,3 +1,4 @@
+
 - name: Directories are created
   file:
     path: "{{ item }}"
@@ -5,6 +6,35 @@
     owner: vagrant
   with_items: "{{ directories }}"
 
+
+
+- name: Container is running
+  docker:
+    image: nginx:alpine
+    name: nginx
+    state: running
+    ports: "{{ ports }}"
+    volumes: "{{ volumes }}"
+  when: not log_to_syslog is defined
+
+- name: Config files are present
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items: "{{ files }}"
+  register: result
+
+
+- name: Container is reloaded
+  shell: docker kill -s HUP nginx
+  when: result|changed
+
+- name: Info is sent to Consul
+  uri:
+    url: http://localhost:8500/v1/kv/proxy/ip
+    method: PUT
+    body: "{{ ip }}"
+  ignore_errors: yes
 
 #- name: Files are copied
 #  copy:

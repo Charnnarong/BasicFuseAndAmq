@@ -1,3 +1,7 @@
+
+ports:
+  - '80:80'
+
 directories:
   - /home/vagrant/nginx-proxy/data/nginx/conf.d
   - /home/vagrant/nginx-proxy/data/nginx/includes
@@ -6,6 +10,10 @@ directories:
   - /home/vagrant/nginx-proxy/data/nginx/templates
 
 files: [
-  { src: 'sample.toml', dest: '/etc/confd/conf.d/sample.toml', mode: '0644' },
-  { src: 'sample.conf.tmpl', dest: '/etc/confd/templates/sample.conf.tmpl', mode: '0644' }
+  { src: 'services.conf', dest: '/home/vagrant/nginx-proxy/data/nginx/conf.d/services.conf' }
 ]
+
+volumes:
+  - /home/vagrant/nginx-proxy/data/nginx/conf.d:/etc/nginx/conf.d
+  - /home/vagrant/nginx-proxy/data/nginx/includes:/etc/nginx/includes
+  - /home/vagrant/nginx-proxy/data/nginx/upstreams:/etc/nginx/upstreams

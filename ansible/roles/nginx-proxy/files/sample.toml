@@ -1,7 +1,0 @@
-[template]
-src = "sample.conf.tmpl"
-dest = "/tmp/sample.conf"
-keys = [
-    "/nginx-80/nginx",
-    "/nginxB-80/nginxB"
-]
